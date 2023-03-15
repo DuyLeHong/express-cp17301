@@ -1,16 +1,25 @@
 const express = require('express')
+
+//import { engine } from 'express-handlebars';
+const expressHbs = require('express-handlebars');
+
 const app = express()
 
-//app.use(express.static(__dirname));
-app.get("/", function (req, res) {
-    console.log(__dirname);
-    res.sendFile(__dirname + "/index.html");
+//app.engine('.hbs', ExpressHandlebars());
+app.engine('.hbs', expressHbs.engine({extname: "hbs"}));
+
+app.set('view engine', '.hbs');
+app.set('views', './views');
+
+app.get('/', (req, res) => {
+  res.render('home');
 });
 
-// respond with "hello world" when a GET request is made to the homepage
-// app.get('/', (req, res) => {
-//   res.send('hello world')
-// })
+//app.use(express.static(__dirname));
+// app.get("/", function (req, res) {
+//     console.log(__dirname);
+//     res.sendFile(__dirname + "/index.html");
+// });
 
 const port = 8000
 
