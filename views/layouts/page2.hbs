@@ -15,8 +15,11 @@
 
 <body>
     <div class="jumbotron text-center">
+        {{#if showTitle}}
         <h1>My First Bootstrap Page</h1>
+        {{/if}}
         <p>Resize this responsive page to see the effect!</p>
+        <p>{{foo}}</p>
     </div>
 
     {{{body}}}
