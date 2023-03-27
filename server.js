@@ -6,7 +6,7 @@ const expressHbs = require('express-handlebars');
 const app = express()
 
 const mongoose = require('mongoose');
-const uri = 'mongodb+srv://leduy:KAzEdIOuXs0QMYqZ@cluster0.auidl4u.mongodb.net/cp17301?retryWrites=true&w=majority';
+const uri = 'mongodb+srv://leduy:password@cluster0.auidl4u.mongodb.net/cp17301?retryWrites=true&w=majority';
 
 const labModel = require('./labModel');
 
