@@ -5,6 +5,55 @@ const expressHbs = require('express-handlebars');
 
 const app = express()
 
+const mongoose = require('mongoose');
+const uri = 'mongodb+srv://leduy:KAzEdIOuXs0QMYqZ@cluster0.auidl4u.mongodb.net/cp17301?retryWrites=true&w=majority';
+
+const labModel = require('./labModel');
+
+app.get('/lab', async (req, res) => {
+  await mongoose.connect(uri).then(console.log('Ket noi DB thanh cong!'));
+
+  try {
+    const labs = await labModel.find({tailieu: 2});
+
+    // labModel.updateMany();
+    // labModel.updateOne({ten: 'Lab 3'}, {ten: 'Lab 3 - 2023'})
+    // labModel.deleteMany({ten: 'Lab 4'});
+    // labModel.deleteOne({ten: 'Lab 4'});
+
+
+    console.log(labs.toString());
+    res.send(labs);
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+app.get('/add_lab', async (req, res) => {
+  await mongoose.connect(uri).then(console.log('Ket noi DB thanh cong!'));
+
+  let lab = new labModel ({
+    tieude : 'lab 7',
+    url: 'linktailieu.com'
+    //tailieu: 2
+  });
+
+  //lab.tailieu = 2;
+
+
+  try {
+    let kq = await lab.save();
+
+    console.log(kq);
+
+    let labs = await labModel.find();
+    res.send(labs);
+
+  } catch (err) {
+    console.log(err);
+  }
+});
+
 //app.engine('.hbs', ExpressHandlebars());
 app.engine('.hbs', expressHbs.engine({ 
   extname: "hbs", 
